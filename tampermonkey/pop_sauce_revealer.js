@@ -141,9 +141,18 @@ const handleInputEvent = async (event) => {
                 console.log(`%c[Pop Sauce Hack] No answer found for question '${question}': '${data.value}'. This will be recorded.`, RED_BACKGROUND);
             }
         } catch (error) {
-            console.error(`[Pop Sauce Hack] Error checking answer for question '${question}': '${data.value}':`, error);
+            console.error(`[Pop Sauce Hack] Error checking answer for question '${question}'`, error);
             inputElement.placeholder = 'Error checking answer';
         }
+    }
+};
+
+const handleKeydownEvent = (event) => {
+    const { target: inputElement } = event;
+    if (event.key === 'Tab' && inputElement.placeholder) {
+        event.preventDefault();
+        inputElement.value = inputElement.placeholder;
+        inputElement.placeholder = '';
     }
 };
 
@@ -156,6 +165,7 @@ const handleInputEvent = async (event) => {
         if (input) {
             console.log('%cPress "+" to reveal the answer', BLUE_BACKGROUND);
             input.addEventListener('input', handleInputEvent);
+            input.addEventListener('keydown', handleKeydownEvent);
         }
     }, MONITOR_INTERVAL);
 })();
