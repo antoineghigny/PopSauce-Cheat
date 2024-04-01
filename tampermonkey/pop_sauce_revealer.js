@@ -92,7 +92,7 @@ const processChallengeContent = async (elements, state) => {
             await postAnswer(contentHash, answerContent);
             console.log(`%c[Pop Sauce Hack] New answer recorded for question: '${question}'`, RED_BACKGROUND);
         } else if (checkResponse.exists) {
-            console.log(`%c[Pop Sauce Hack] Answer for question '${question}' already in database: '${checkResponse.answer}'`, GREEN_BACKGROUND);
+            console.log(`%c[Pop Sauce Hack] Answer for question '${question}' already in database: '${checkResponse.value}'`, GREEN_BACKGROUND);
         }
     } else if (answerWrapper.hidden) {
         state.answerRevealed = false;
@@ -134,14 +134,14 @@ const handleInputEvent = async (event) => {
         try {
             const data = await fetchJSON(API_BASE_URL + CHECK_ENDPOINT + contentHash);
             if (data.exists) {
-                inputElement.placeholder = data.answer;
-                console.log(`%c[Pop Sauce Hack] Found answer for question '${question}': '${data.answer}'`, GREEN_BACKGROUND);
+                inputElement.placeholder = data.value;
+                console.log(`%c[Pop Sauce Hack] Found answer for question '${question}': '${data.value}'`, GREEN_BACKGROUND);
             } else {
                 inputElement.placeholder = 'This will be recorded...';
-                console.log(`%c[Pop Sauce Hack] No answer found for question '${question}'. This will be recorded.`, RED_BACKGROUND);
+                console.log(`%c[Pop Sauce Hack] No answer found for question '${question}': '${data.value}'. This will be recorded.`, RED_BACKGROUND);
             }
         } catch (error) {
-            console.error(`[Pop Sauce Hack] Error checking answer for question '${question}':`, error);
+            console.error(`[Pop Sauce Hack] Error checking answer for question '${question}': '${data.value}':`, error);
             inputElement.placeholder = 'Error checking answer';
         }
     }
