@@ -22,6 +22,8 @@ const GREEN_BACKGROUND = "background: #85D492; color: #000";
 const RED_BACKGROUND = "background: #D68280; color: #000";
 const BLUE_BACKGROUND = "background: #80A5D6; color: #000";
 
+const UNKNOWN_ANSWER_TEXT = 'Unknown answer';
+
 const hashCode = (str) => [...str].reduce((hash, char) => Math.imul(31, hash) + char.charCodeAt(0) | 0, 0);
 
 const fetchJSON = async (url, options = {}) => {
@@ -149,10 +151,12 @@ const handleInputEvent = async (event) => {
 
 const handleKeydownEvent = (event) => {
     const { target: inputElement } = event;
-    if (event.key === 'Tab' && inputElement.placeholder) {
+    if (event.key === 'Tab' && inputElement.placeholder !== UNKNOWN_ANSWER_TEXT) {
         event.preventDefault();
-        inputElement.value = inputElement.placeholder;
-        inputElement.placeholder = '';
+        if (inputElement.placeholder) {
+            inputElement.value = inputElement.placeholder;
+            inputElement.placeholder = '';
+        }
     }
 };
 
