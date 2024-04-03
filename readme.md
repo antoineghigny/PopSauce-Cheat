@@ -69,6 +69,7 @@ Pop Sauce Answer Revealer is a custom user script for the online game 'Pop Sauce
 1. **Monitoring and Interaction**: The script continually monitors game elements for changes, like new challenges or revealed answers.
 2. **Hashing and Data Retrieval**: When you press `+`, it hashes the content of the current question and searches the local database for an existing answer.
 3. **Database Interaction**: If the answer exists, it is displayed. If not, the answer (once revealed in the game) is recorded in the database for future use.
+4. **Auto-completion**: If you press  `Tab` after revealing the answer.
 
 ## Dependencies
 
