@@ -1,4 +1,4 @@
-# Pop Sauce Answer Revealer
+# Pop Sauce Cheat
 
 ## Introduction
 Pop Sauce Answer Revealer is a custom user script for the online game 'Pop Sauce' hosted at [jklm.fun](https://jklm.fun/). This script is intended for educational purposes, to demonstrate interaction with web elements and local databases. It automates the process of revealing game answers through a combination of user interactions and backend operations. 
